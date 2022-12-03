@@ -1,6 +1,7 @@
 package main;
 
 import algorithms.FCFS;
+import algorithms.NSRT;
 import algorithms.SJF;
 import components.CPU;
 import components.Process;
@@ -15,13 +16,14 @@ import java.util.Collections;
 public class Main {
 
     public static void main(String[] args) {
-        int t1, t2, p, op = 2;
+        int t1, t2, p, op = 3;
         FCFS fcfs = new FCFS();
         SJF sjf = new SJF();
+        NSRT nsrt = new NSRT();
         CPU cpu = new CPU(10);
         Process process;
         ArrayList<String> data = FileManager.stringReader("./testes/teste.txt");
-        ArrayList<Process> processos = new ArrayList(); 
+        ArrayList<Process> processos = new ArrayList();
 
         for (String aux : data) {
             String[] processData = aux.split(", ");
@@ -31,24 +33,23 @@ public class Main {
             process = new Process(t1, t2, p);
             processos.add(process);
         }
-        
-        if(op == 1){
-            for(Process aux : processos){
+
+        if (op == 1) {
+            for (Process aux : processos) {
                 fcfs.FCFS(aux, cpu);
             }
-        }else if(op == 2){
+        } else if (op == 2) {
             Collections.sort(processos);
-            for(Process aux : processos){
+            for (Process aux : processos) {
                 sjf.SJF(aux, cpu);
             }
+            System.out.println(processos.size());
+        } else if (op == 3) {
+            Collections.sort(processos);
+            nsrt.NSRT(processos, cpu);
         }
-        
 
-        System.out.println("Tempo Total : " + cpu.getTimeTotal());
-        System.out.println("Tempo Maximo de espera : " + cpu.getTimeWaitMax());
-        System.out.println("Tempo Medio de Espera : " + cpu.getTimeWaitMed()/cpu.getNumProcess());
-        System.out.println("Tempo Medio de ociosidade da CPU : " + cpu.getTimeidlenesstMed()/cpu.getNumProcess());
-        System.out.println("Tempo Maximo de ociosidade da CPU : " + cpu.getIdlenessMax());
+        cpu.mostrarDados();
     }
 
 }

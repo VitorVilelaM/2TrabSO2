@@ -100,5 +100,14 @@ public class CPU {
     public void setRun(boolean run) {
         this.run = run;
     }
+    
+    public void mostrarDados(){
+        System.out.println("Tempo Total : " + getTimeTotal());
+        System.out.println("Tempo Maximo de espera : " + getTimeWaitMax());
+        System.out.println("Tempo Medio de Espera : " + getTimeWaitMed() / getNumProcess());
+        System.out.println("Tempo Medio de ociosidade da CPU : " + getTimeidlenesstMed() / getNumProcess());
+        System.out.println("Tempo Maximo de ociosidade da CPU : " + getIdlenessMax());
+        System.out.println("Trocas de Contexto: " + getContextTrade());
+    }
 
 }
