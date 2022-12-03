@@ -4,7 +4,7 @@ package components;
  *
  * @author vitor
  */
-public class Process {
+public class Process implements Comparable<Process>{
 
     private int timeArrival;
     private int timeService;
@@ -48,5 +48,20 @@ public class Process {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    @Override
+    public int compareTo(Process o) {
+        if(o.getTimeArrival() == this.timeArrival){
+            int controle1= o.getTimeJob(), controle2 = this.timeJob;
+            if(o.getTimeJob() > this.timeJob){
+                return -1;
+            }else if(o.getTimeJob() < this.timeJob){
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+        return 0;
     }
 }
