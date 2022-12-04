@@ -26,7 +26,7 @@ public class CPU {
         this.timeTotal = 0;
         this.numProcess = 0;
         this.idlenessMax = 0;
-        
+
     }
 
     public int getNumProcess() {
@@ -100,5 +100,23 @@ public class CPU {
     public void setRun(boolean run) {
         this.run = run;
     }
+<<<<<<< Updated upstream
+=======
+
+    public void mostrarDados() {
+        double valor;
+        String resultado;
+        System.out.println("Tempo Total : " + getTimeTotal());
+        System.out.println("Tempo Maximo de espera : " + getTimeWaitMax());
+        valor = getTimeWaitMed() / getNumProcess();
+        resultado = String.format("%.2f", valor);
+        System.out.println("Tempo Medio de Espera : " + resultado);
+        valor = getTimeidlenesstMed() / getNumProcess();
+        resultado = String.format("%.2f", valor);
+        System.out.println("Tempo Medio de ociosidade da CPU : " + resultado);
+        System.out.println("Tempo Maximo de ociosidade da CPU : " + getIdlenessMax());
+        System.out.println("Trocas de Contexto: " + getContextTrade());
+    }
+>>>>>>> Stashed changes
 
 }
